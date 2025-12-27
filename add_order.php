@@ -18,7 +18,10 @@ if(isset($_POST['submit'])) {
     $allowedext = array("pdf", "jpg", "png", "jpeg");
     $maxsize = 2 * 1024 * 1024;
 
-    if(!in_array($fileext, $allowedext)) {
+    if( $file_ext != "pdf" &&
+    $file_ext != "jpg" &&
+    $file_ext != "png" &&
+    $file_ext != "jpeg") {
         echo "Error: Only PDF, JPG, and PNG files are allowed.";
     } elseif($filesize > $maxsize) {
         echo "Error: File size must be less than 2MB.";
