@@ -7,10 +7,10 @@ try {
     $stmt = $conn->prepare( "SELECT invoice_file FROM orders WHERE id=$id");
     $stmt->execute();
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    $file_to_delete = "uploads/invoices/" . $data['invoice_file'];
+    $filetodlt = "uploads/invoices/" . $data['invoice_file'];
 
-    if(file_exists($file_to_delete)) {
-        unlink($file_to_delete);
+    if(file_exists($filetodlt)) {
+        unlink($filetodlt);
     }
 
     $sql = "DELETE FROM orders WHERE id=$id";

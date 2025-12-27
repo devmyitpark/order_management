@@ -10,11 +10,13 @@
         <th>Amount</th>
         <th>Status</th>
         <th>Invoice</th>
+
         <th>Edit</th>
         <th>Delete</th>
     </tr>
     <?php
     try {
+        //INNER JOIN
      $sql = "SELECT orders.*, customers.name, categories.category_name
         FROM orders
         JOIN customers ON orders.customer_id = customers.id
