@@ -38,14 +38,3 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
-<h2>Add New Customer</h2>
-<form method="POST">
-    Name: <input type="text" name="name" required><br><br>
-
-    Email: <input type="email" name="email" required><br><br>
-
-    Phone: <input type="text" name="phone" required><br><br>
-
-    <button type="submit" name="submit">Add Customer</button>
-    <a href="index.php">Back to List</a>
-</form>
