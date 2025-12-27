@@ -1,35 +1,3 @@
-<form method="POST" enctype="multipart/form-data">
-    Customer:
-    <select name="customer_id">
-        <?php
-        $stmt = $conn->query("SELECT * FROM customers");
-        while($c = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<option value='{$c['id']}'>{$c['name']}</option>";
-        }
-        ?>
-    </select><br>
-
-    Category:
-    <select name="category_id">
-        <?php
-        $stmt = $conn->query("SELECT * FROM categories WHERE status=1");
-        while($cat = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<option value='{$cat['id']}'>{$cat['category_name']}</option>";
-        }
-        ?>
-    </select><br>
-
-    Amount: <input type="number" step="1" name="amount" required><br>
-    Order Date: <input type="date" name="order_date" required><br>
-    Status:
-    <select name="status">
-        <option value="Pending">Active</option>
-        <option value="Completed">Completed</option>
-        <option value="Cancelled">Cancelled</option>
-    </select><br>
-    Invoice (Only PDF/JPG/PNG, Max 2MB): <input type="file" name="invoice" required><br>
-    <button type="submit" name="submit">Save Order</button>
-</form>
 
 <?php
 include('db.php');
@@ -76,4 +44,37 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
+<form method="POST" enctype="multipart/form-data">
+    Customer:
+    <select name="customer_id">
+        <?php
+        $stmt = $conn->query("SELECT * FROM customers");
+        while($c = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<option value='{$c['id']}'>{$c['name']}</option>";
+        }
+        ?>
+    </select><br>
+
+    Category:
+    <select name="category_id">
+        <?php
+        $stmt = $conn->query("SELECT * FROM categories WHERE status=1");
+        while($cat = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<option value='{$cat['id']}'>{$cat['category_name']}</option>";
+        }
+        ?>
+    </select><br>
+
+    Amount: <input type="number" step="1" name="amount" required><br>
+    Order Date: <input type="date" name="order_date" required><br>
+    Status:
+    <select name="status">
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancelled">Cancelled</option>
+    </select><br>
+    Invoice (Only PDF/JPG/PNG, Max 2MB): <input type="file" name="invoice" required><br>
+    <button type="submit" name="submit">Save Order</button>
+</form>
+
 

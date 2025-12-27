@@ -1,47 +1,4 @@
-<h2>Edit Order</h2>
-<form method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
-    <input type="hidden" name="old_invoice" value="<?php echo $order['invoice_file']; ?>">
 
-    Customer:
-    <select name="customer_id">
-        <?php
-        $c_stmt = $conn->query("SELECT * FROM customers");
-        while($c = $c_stmt->fetch()) {
-            $sel = ($c['id'] == $order['customer_id']) ? "selected" : "";
-            echo "<option value='{$c['id']}' $sel>{$c['name']}</option>";
-        }
-        ?>
-    </select><br><br>
-
-    Category:
-    <select name="category_id">
-        <?php
-        $cat_stmt = $conn->query("SELECT * FROM categories WHERE status=1");
-        while($cat = $cat_stmt->fetch()) {
-            $sel = ($cat['id'] == $order['category_id']) ? "selected" : "";
-            echo "<option value='{$cat['id']}' $sel>{$cat['category_name']}</option>";
-        }
-        ?>
-    </select><br><br>
-
-    Amount: <input type="number" step="0.01" name="amount" value="<?php echo $order['order_amount']; ?>" required><br><br>
-
-    Order Date: <input type="date" name="order_date" value="<?php echo $order['order_date']; ?>" required><br><br>
-
-    Status:
-    <select name="status">
-        <option value="Pending" <?php if($order['order_status']=='Pending') echo 'selected'; ?>>Pending</option>
-        <option value="Completed" <?php if($order['order_status']=='Completed') echo 'selected'; ?>>Completed</option>
-        <option value="Cancelled" <?php if($order['order_status']=='Cancelled') echo 'selected'; ?>>Cancelled</option>
-    </select><br><br>
-
-
-    Modify Invoice (Optional): <input type="file" name="invoice"><br><br>
-
-    <button type="submit" name="update">Update Order</button>
-    <a href="index.php">Cancel</a>
-</form>
 
 <?php
 include('db.php');
@@ -108,4 +65,48 @@ if(isset($_POST['update'])) {
     }
 }
 ?>
+<h2>Edit Order</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
+    <input type="hidden" name="old_invoice" value="<?php echo $order['invoice_file']; ?>">
+
+    Customer:
+    <select name="customer_id">
+        <?php
+        $c_stmt = $conn->query("SELECT * FROM customers");
+        while($c = $c_stmt->fetch()) {
+            $sel = ($c['id'] == $order['customer_id']) ? "selected" : "";
+            echo "<option value='{$c['id']}' $sel>{$c['name']}</option>";
+        }
+        ?>
+    </select><br><br>
+
+    Category:
+    <select name="category_id">
+        <?php
+        $cat_stmt = $conn->query("SELECT * FROM categories WHERE status=1");
+        while($cat = $cat_stmt->fetch()) {
+            $sel = ($cat['id'] == $order['category_id']) ? "selected" : "";
+            echo "<option value='{$cat['id']}' $sel>{$cat['category_name']}</option>";
+        }
+        ?>
+    </select><br><br>
+
+    Amount: <input type="number" step="0.01" name="amount" value="<?php echo $order['order_amount']; ?>" required><br><br>
+
+    Order Date: <input type="date" name="order_date" value="<?php echo $order['order_date']; ?>" required><br><br>
+
+    Status:
+    <select name="status">
+        <option value="Pending" <?php if($order['order_status']=='Pending') echo 'selected'; ?>>Pending</option>
+        <option value="Completed" <?php if($order['order_status']=='Completed') echo 'selected'; ?>>Completed</option>
+        <option value="Cancelled" <?php if($order['order_status']=='Cancelled') echo 'selected'; ?>>Cancelled</option>
+    </select><br><br>
+
+
+    Modify Invoice (Optional): <input type="file" name="invoice"><br><br>
+
+    <button type="submit" name="update">Update Order</button>
+    <a href="index.php">Cancel</a>
+</form>
 
