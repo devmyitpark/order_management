@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
 
         $check_stmt = $conn->prepare("SELECT email FROM customers WHERE email = ?");
         $check_stmt->execute([$email]);
-
+//checking duplicate emails
         if($check_stmt->rowCount() > 0) {
             echo "<script>alert('Error: This email is already registered!');</script>";
         } else {
@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
             $stmt = $conn->prepare($sql);
             $stmt->execute([$name, $email, $phone]);
 
-            echo "<script>alert('Customer added successfully!'); window.location='index.php';</script>";
+            echo "<script>alert('Customer added successfully!');</script>";
         }
     } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();

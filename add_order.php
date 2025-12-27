@@ -10,18 +10,19 @@ if(isset($_POST['submit'])) {
     $date = $_POST['order_date'];
 
     $file = $_FILES['invoice'];
-    $filename = time() . "_" . $file['name'];
+    $filename = $file['name'];
     $tempname = $file['tmp_name'];
     $filesize = $file['size'];
     $fileext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-    $allowedext = array("pdf", "jpg", "png", "jpeg");
+
+
     $maxsize = 2 * 1024 * 1024;
 
-    if( $file_ext != "pdf" &&
-    $file_ext != "jpg" &&
-    $file_ext != "png" &&
-    $file_ext != "jpeg") {
+    if( $fileext != "pdf" &&
+    $fileext != "jpg" &&
+    $fileext != "png" &&
+    $fileext != "jpeg") {
         echo "Error: Only PDF, JPG, and PNG files are allowed.";
     } elseif($filesize > $maxsize) {
         echo "Error: File size must be less than 2MB.";

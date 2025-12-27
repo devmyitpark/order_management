@@ -24,9 +24,9 @@ if(isset($_POST['update'])) {
 
     if(!empty($_FILES['invoice']['name'])) {
         $file = $_FILES['invoice'];
-        $new_filename = time() . "_" . $file['name'];
+        $new_filename =  $file['name'];
         $file_ext = strtolower(pathinfo($new_filename, PATHINFO_EXTENSION));
-        $allowed_ext = array("pdf", "jpg", "png", "jpeg");
+
 
 
         if(  $file_ext != "pdf" &&
